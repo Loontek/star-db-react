@@ -1,1 +1,0 @@
-# star-db-react
