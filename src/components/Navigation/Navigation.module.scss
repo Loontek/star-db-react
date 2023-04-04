@@ -1,0 +1,59 @@
+@import '../../styles/abstracts/_mixins';
+
+.Navigation {
+    width: max-content;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.link {
+    @include font(1.6rem, 2rem);
+    text-decoration: none;
+    color: var(--color-light-2);
+    transition: color .2s ease-in-out;
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 0;
+        position: absolute;
+        top: calc(100% + 0px);
+        left: 0;
+        border-bottom: 2px dashed var(--color-red);
+        height: 2px;
+        transition: width .2s linear;
+    }
+    
+    &::after {
+        content: '';
+        background: url('./src/assets/img/death-star-svgrepo-com.svg') no-repeat bottom / cover;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: absolute;
+        right: 0;
+        opacity: 0;
+        bottom: calc(25% - 20px);
+        transition: opacity .2s linear;
+    }
+
+    &:hover {
+        color: var(--color-yellow);
+    }
+
+    &:hover::before {
+        width: calc(100% - 20px);
+    }
+
+    &:hover::after {
+        opacity: 1;
+    }
+}

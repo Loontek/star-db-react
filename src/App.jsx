@@ -1,11 +1,12 @@
 import './App.module.scss'
+import StarDbApp from './components/StarDbApp/StarDbApp'
 
 function App() {
 
   return (
-    <div className="App">
-      
-    </div>
+    <>
+      <StarDbApp/>
+    </>
   )
 }
 

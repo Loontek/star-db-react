@@ -1,0 +1,23 @@
+@use './styles/abstracts/_constants';
+@use './styles/fonts';
+
+@import './src/styles/abstracts/_placeholders';
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100vh;
+  font-size: 10px;
+}
+
+body,
+#root {
+  // height: 100%;
+  height: max-content;
+  @extend %font-sw;
+}

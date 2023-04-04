@@ -1,0 +1,30 @@
+@import '../../styles/abstracts/_mixins';
+
+.ItemsList {
+    width: 100%;
+    height: max-content;
+    background: var(--color-dark);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    @include font(3.2rem,3.6rem);
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+.item {
+    padding: 30px 70px;
+    border-top: 2px solid var(--color-light-2);
+    cursor: pointer;
+    transition: background .2s linear, color .2s linear,;
+
+    &:hover {
+        background: var(--color-primary);
+        color: var(--color-yellow);
+    }
+    
+    &:first-child {
+        border-top: none;
+    }
+}

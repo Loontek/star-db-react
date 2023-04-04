@@ -1,0 +1,9 @@
+.Header {
+    width: 100%;
+    padding: 25px 120px;
+    background: var(--header-gradient);
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    box-shadow: 0 5px 10px var(--color-dark);
+}

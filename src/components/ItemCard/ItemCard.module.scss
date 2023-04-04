@@ -1,0 +1,52 @@
+@import '../../styles/abstracts/_mixins';
+
+.ItemCard {
+    width: 100%;
+    height: max-content;
+    background: var(--color-dark);
+    border-radius: 20px;
+    padding: 70px;
+    display: flex;
+    gap: 50px;
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.img {
+    max-height: 400px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px var(--color-primary);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    flex-grow: 1;
+}
+
+.title {
+    @include font(3.2rem, 3.6rem);
+}
+
+.featuresList {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    column-gap: 50px;
+    letter-spacing: 0.5rem;
+    list-style: none;
+    padding-left: 50px;
+    overflow-y: auto;
+    @include font(2.4rem, 2.6rem);
+}
+
+.feature {
+    border-top: 1px solid var(--color-light-2);
+    padding-top: 20px;
+    
+    &:first-child {
+        border-top: none;
+        padding-top: 0;
+    }
+}
