@@ -7,33 +7,24 @@ import RandomPlanet from '../RandomPlanet/RandomPlanet';
 import styles from './StarDbApp.module.scss';
 
 const StarDbApp = () => {
-    // const [swapi,setSwapi] = useState(null);
-    // const [id,setId] = useState(null)
-    // const swapiService = new SwapiService;
-    // const person = {
-    //   name:null,
-    //   birthYear: null,
-    //   gender: null,
-    // }
+  const [isErrorThrown, setIsErrorThrown] = useState(false);
+  const [isRestored, setIsRestored] = useState(false);
 
-    // useEffect(()=> {
-    //   swapiService.getResource('https://swapi.dev/api/people/1/')
-    //     .then(data => setSwapi(data))
-    // }, [])
+  const handleErrowThrow = () => {
+    setIsErrorThrown(true)
+    setIsRestored(false)
+  }
 
-    // useEffect(()=>{
-    //   person
-    // },[swapi])
-
-    // console.log(swapi)
+  const handleRestore = () => {
+    setIsErrorThrown(false)
+    setIsRestored(true)
+  }
 
     return (
     <div className={styles.StarDbApp}>
-      {/* <h1>{}</h1> */}
-      <Header/>
+      <Header handleErrowThrow={handleErrowThrow} handleRestore={handleRestore}/>
       <main>
-        {/* <div className={styles.box}/> */}
-        <RandomPlanet/>
+        <RandomPlanet isErrorThrown={isErrorThrown} isRestored={isRestored}/>
         <ItemsList/>
         <ItemCard/>
       </main>
