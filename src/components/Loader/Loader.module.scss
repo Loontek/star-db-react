@@ -3,6 +3,7 @@
     height: 80px;
     position: relative;
     border-radius: 50%;
+    animation: spin 1s linear infinite;
     
     &::before {
         content: '';
@@ -27,47 +28,6 @@
         top: calc(25% - 50px);
         left: 25%;
     }
-}
-
-.LoaderAppear {
-    opacity: 0;
-    transform: translateX(-100%);
-}
-
-.LoaderAppearActive {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 300ms, transform 300ms;
-}
-
-.LoaderEnter {
-    opacity: 0;
-    transform: translateX(-100%);
-}
-
-.LoaderEnterActive {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 300ms, transform 300ms;
-}
-
-.LoaderEnterDone {
-    opacity: 1;
-    animation: spin 1s linear infinite;
-}
-
-.LoaderExit {
-    opacity: 1;
-}
-
-.LoaderExitActive {
-    opacity: 0;
-    transform: translateX(100%);
-    transition: opacity 300ms, transform 300ms;
-}
-
-.LoaderExitDone {
-    opacity: 0;
 }
 
 @keyframes spin {

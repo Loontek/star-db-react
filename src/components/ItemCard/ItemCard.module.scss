@@ -2,18 +2,48 @@
 
 .ItemCard {
     width: 100%;
-    height: max-content;
+    height: 540px;
     background: var(--color-dark);
     border-radius: 20px;
-    padding: 70px;
     display: flex;
-    gap: 50px;
-    grid-column: 2/3;
-    grid-row: 2/3;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: all .3s linear;
+}
+
+
+.ItemCardRender {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 50px 40px;
+    overflow: hidden;
+    overflow-y: scroll;
+    gap: 30px;
+}
+
+.ItemCardRender::-webkit-scrollbar {
+    width: 12px;
+}
+
+.ItemCardRender::-webkit-scrollbar-track {
+    background: var(--color-dark);
+}
+
+.ItemCardRender::-webkit-scrollbar-thumb {
+    background-color: var(--color-yellow);
+    border-radius: 5px;
 }
 
 .img {
-    max-height: 400px;
+    width: 5vw;
+    max-width: 450px;
+    min-width: 300px;
+    object-fit: contain;
+    height: max-content;
     border-radius: 20px;
     box-shadow: 0 0 10px var(--color-primary);
 }
@@ -23,6 +53,7 @@
     flex-direction: column;
     gap: 50px;
     flex-grow: 1;
+    padding: 20px 0;
 }
 
 .title {
@@ -33,20 +64,10 @@
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    column-gap: 50px;
+    column-gap: 20px;
     letter-spacing: 0.5rem;
     list-style: none;
-    padding-left: 50px;
+    padding-left: 20px;
     overflow-y: auto;
     @include font(2.4rem, 2.6rem);
-}
-
-.feature {
-    border-top: 1px solid var(--color-light-2);
-    padding-top: 20px;
-    
-    &:first-child {
-        border-top: none;
-        padding-top: 0;
-    }
 }

@@ -1,0 +1,19 @@
+.row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 50px;
+
+    @media all and (max-width: 1000px) {
+        flex-direction: column-reverse;
+    }
+}
+
+.col {
+    width: 50%;
+
+    @media all and (max-width: 1000px) {
+        width: 100%;
+    }
+}
+

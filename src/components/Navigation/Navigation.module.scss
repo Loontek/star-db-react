@@ -11,7 +11,7 @@
 }
 
 .link {
-    @include font(1.6rem, 2rem);
+    @include font(2rem, 2.4rem);
     text-decoration: none;
     color: var(--color-light-2);
     transition: color .2s ease-in-out;
@@ -21,39 +21,106 @@
 
     &::before {
         content: '';
+        background: url('../../assets/img/flame-danger-svgrepo-com.svg') no-repeat center / cover;
         display: block;
-        width: 0;
+        width: 20px;
+        height: 20px;
+        transform: rotate(-90deg);
         position: absolute;
-        top: calc(100% + 0px);
-        left: 0;
-        border-bottom: 2px dashed var(--color-red);
-        height: 2px;
-        transition: width .2s linear;
+        bottom: calc(25% - 30px);
+        left: -20px;
+        opacity: 0;
+        animation: backwardtwo 200ms ease-in-out forwards;
     }
     
     &::after {
         content: '';
-        background: url('./src/assets/img/death-star-svgrepo-com.svg') no-repeat bottom / cover;
+        background: url('../../assets/img/icons8-star-wars-rebellion-ship-48.png') no-repeat center / cover;
         display: block;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
+        width: 30px;
+        height: 30px;
         position: absolute;
-        right: 0;
+        transform: rotateZ(90deg);
+        bottom: calc(25% - 35px);
         opacity: 0;
-        bottom: calc(25% - 20px);
-        transition: opacity .2s linear;
+        animation: backwardone 200ms ease-in-out forwards;
     }
-
+    
     &:hover {
         color: var(--color-yellow);
     }
-
+    
     &:hover::before {
-        width: calc(100% - 20px);
+        animation: forwardtwo 200ms ease-in-out forwards;
+    }
+    
+    &:hover::after {
+        animation: forwardone 200ms ease-in-out forwards;
+    }
+}
+
+@keyframes forwardone {
+    0% {
+        opacity: 0;
+        left: 0;
     }
 
-    &:hover::after {
+    100% {
         opacity: 1;
+        left: calc(100% - 30px);
     }
+}
+
+@keyframes forwardtwo {
+    0% {
+        opacity: 0;
+        left: -20px;
+    }
+
+    100% {
+        opacity: 1;
+        left: calc(100% - 50px);
+    }
+}
+
+@keyframes backwardone {
+    0% {
+        opacity: 1;
+        left: calc(100% - 30px);
+    }
+
+    100% {
+        opacity: 0;
+        left: 0;
+    }
+}
+
+@keyframes backwardtwo {
+    0% {
+        opacity: 1;
+        left: calc(100% - 50px);
+    }
+
+    100% {
+        opacity: 0;
+        left: -20px;
+    }
+}
+
+.active {
+    color: var(--color-yellow);
+    
+    
+    // &::before {
+    //     width: calc(100% - 20px);
+    // }
+    
+    // &::after {
+    //     opacity: 1;
+    // }
+}
+
+.pending {
+    background: #000;
+    color: var(--color-dark);
 }

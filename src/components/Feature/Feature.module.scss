@@ -1,0 +1,15 @@
+.feature {
+    border-top: 1px solid var(--color-light-2);
+    padding-top: 20px;
+    
+    &:first-child {
+        border-top: none;
+        padding-top: 0;
+    }
+}
+
+.itemName {
+    &::after {
+        content: ':';
+    }
+}

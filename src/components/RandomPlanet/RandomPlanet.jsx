@@ -1,92 +1,77 @@
-import { useEffect, useState } from 'react';
-import styles from './RandomPlanet.module.scss';
-import SwapiService from '../../services/SwapiService';
-import Loader from '../Loader/Loader';
-import RandomPlanetRender from './RandomPlanetRender';
-import ErrorIndicator from '../ErrorIndicator/ErrorIndicator';
+import { useContext, useEffect, useState } from "react";
+import styles from "./RandomPlanet.module.scss";
+import Loader from "../Loader/Loader";
+import RandomPlanetRender from "./RandomPlanetRender";
+import ErrorIndicator from "../ErrorIndicator/ErrorIndicator";
+import errorIcon from "../../assets/img/error.svg";
+import { useData } from "../../hooks/useData";
+import { SwapiServiceContext } from "../../contexts";
+import { AnimatePresence } from "framer-motion";
 
 const RandomPlanet = ({ isErrorThrown, isRestored }) => {
-  const [planet, setPlanet] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [showContent, setShowContent] = useState(false);
-  const [planetsInterval, setPlanetsInterval] = useState(null)
-  const swapiService = new SwapiService;
-  
-  const onPlanetLoaded = (planet) => {
-    setPlanet(planet);
-    setIsLoading(false);
-    setTimeout(()=>{
-      setShowContent(true)
-    },300)
-  }
-  
-  const onError = (err) => {
-    setIsError(true);
-    console.log(err)
-  }
+	const { getPlanet } = useContext(SwapiServiceContext);
+	const { data, isLoading, isError, updateData } = useData(getPlanet);
+	const [planetsInterval, setPlanetsInterval] = useState(null);
 
-  const updatePlanet = () => {
-    const id = isErrorThrown ? 12000 : Math.floor(Math.random() * 15) + 2;
-    console.log(id)
+	useEffect(() => {
+		const id = isErrorThrown ? 12000 : Math.floor(Math.random() * 15) + 2;
 
-    setIsLoading(true);
-    setTimeout(()=>{
-    setShowContent(false)
-    },300)
-    
-    setTimeout(()=>{
-      swapiService
-        .getPlanet(id)
-        .then(onPlanetLoaded)
-        .catch(onError);
-    },500)
-  }  
+		updateData(id);
 
-  useEffect(()=>{
-    updatePlanet();
+		const interval = setInterval(() => {
+			const id = isErrorThrown
+				? 12000
+				: Math.floor(Math.random() * 15) + 2;
+			updateData(id);
+		}, 20000);
 
-    const interval = setInterval(()=>{
-      updatePlanet();
-    }, 5000)
+		setPlanetsInterval(interval);
 
-    setPlanetsInterval(interval)
+		return () => clearInterval(interval);
+	}, []);
 
-    return () => clearInterval(interval);
-  },[])
+	useEffect(() => {
+		if (!isErrorThrown) return;
 
-  useEffect(()=>{
-    if(!isErrorThrown) return;
+		clearInterval(planetsInterval);
+	}, [isErrorThrown]);
 
-    setIsError(true)
+	useEffect(() => {
+		if (!isRestored) return;
 
-    clearInterval(planetsInterval)
-  },[isErrorThrown])
+		clearInterval(planetsInterval);
 
-  useEffect(()=>{
-    if(!isRestored) return;
+		const interval = setInterval(() => {
+			const id = isErrorThrown
+				? 12000
+				: Math.floor(Math.random() * 15) + 2;
+			updateData(id);
+		}, 20000);
 
-    clearInterval(planetsInterval);
+		setPlanetsInterval(interval);
+	}, [isRestored]);
 
-    const interval = setInterval(()=>{
-      updatePlanet();
-    }, 5000)
-
-    setPlanetsInterval(interval)
-
-    setIsError(false)
-  },[isRestored])
-  
-  return (
-    <div className={styles.RandomPlanet}>
-      {isError
-        ? <ErrorIndicator/>
-        : !showContent
-        ? <Loader isLoading={isLoading}/>
-        : <RandomPlanetRender planet={planet} isLoading={isLoading}/>
-      }
-    </div>
-  )
-}
+	return (
+		<div className={styles.RandomPlanet}>
+			<AnimatePresence mode="wait">
+				{isError || isErrorThrown ? (
+					<ErrorIndicator
+						icon={errorIcon}
+						description={"Oops... Death Star destroyed your planet"}
+						key="error"
+					/>
+				) : isLoading ? (
+					<Loader isLoading={isLoading} key="loader" />
+				) : (
+					<RandomPlanetRender
+						planet={data}
+						isLoading={isLoading}
+						key="content"
+					/>
+				)}
+			</AnimatePresence>
+		</div>
+	);
+};
 
 export default RandomPlanet;

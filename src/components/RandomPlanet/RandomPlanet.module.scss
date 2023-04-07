@@ -12,14 +12,15 @@
     grid-column: 1/3;
     grid-row: 1/2;
     overflow: hidden;
-    transition: max-height .3s linear;
+
+    @media all and (max-width:1200px) {
+        grid-column: 1/2;
+    }
 }
 
 
 .img {
     max-width: 300px;
-    // height: 100%;
-    // width: 100%;
     border-radius: 20px;
     box-shadow: 0 0 20px var(--color-dark-2);
 }
@@ -71,44 +72,4 @@
     gap: 50px;
     justify-content: center;
     align-items: center;
-}
-
-.wrapperAppear {
-    opacity: 0;
-    transform: translateX(-100%);
-}
-
-.wrapperAppearActive {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 300ms, transform 300ms;
-}
-
-.wrapperEnter {
-    opacity: 0;
-    transform: translateX(-100%);
-}
-
-.wrapperEnterActive {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 300ms, transform 300ms;
-}
-
-.wrapperEnterDone {
-    opacity: 1;
-}
-
-.wrapperExit {
-    opacity: 1;
-}
-
-.wrapperExitActive {
-    opacity: 0;
-    transform: translateX(100%);
-    transition: opacity 300ms, transform 300ms;
-}
-
-.wrapperExitDone {
-    opacity: 0;
 }

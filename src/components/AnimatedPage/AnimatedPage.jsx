@@ -1,25 +1,24 @@
+import styles from "./AnimatedPage.module.scss";
 import { motion } from "framer-motion";
-import styles from "./Loader.module.scss";
 
-const Loader = () => {
+const AnimatedPage = ({ children }) => {
 	const animations = {
 		initial: {
 			opacity: 0,
-			rotate: 0,
+			scale: 0,
 		},
 		animate: {
 			opacity: 1,
-			rotate: [0, "360deg"],
+			scale: 1,
 		},
 		exit: {
 			opacity: 0,
-			rotate: 0,
+			scale: 0,
 		},
 	};
 
 	return (
 		<motion.div
-			className={styles.Loader}
 			variants={animations}
 			initial="initial"
 			animate="animate"
@@ -28,8 +27,10 @@ const Loader = () => {
 				type: "spring",
 				duration: 0.5,
 			}}
-		/>
+		>
+			{children}
+		</motion.div>
 	);
 };
 
-export default Loader;
+export default AnimatedPage;

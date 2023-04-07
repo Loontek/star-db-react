@@ -3,11 +3,11 @@
 
 .Header {
     width: 100%;
-    padding: 25px 120px;
+    padding: 25px 5vw;
     background: var(--header-gradient);
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 2vw;
     box-shadow: 0 5px 10px var(--color-dark);
 }
 
@@ -21,6 +21,8 @@
 .ErrorButton,
 .RestoreButton {
     @extend %font-sw;
+    width: max-content;
+    align-self: center;
     border: none;
     outline: none;
     padding: 5px 20px;

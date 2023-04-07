@@ -2,22 +2,46 @@
 
 .ItemsList {
     width: 100%;
-    height: max-content;
+    height: 540px;
     background: var(--color-dark);
     border-radius: 20px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
     flex-direction: column;
     list-style: none;
-    @include font(3.2rem,3.6rem);
-    grid-column: 1/2;
-    grid-row: 2/3;
+    overflow: hidden;
+    overflow-y: scroll;
+    @include font(2.4rem,3rem);
+}
+
+.ItemsList ul::-webkit-scrollbar {
+    width: 12px;
+}
+
+.ItemsList ul::-webkit-scrollbar-track {
+    background: var(--color-dark);
+}
+
+.ItemsList ul::-webkit-scrollbar-thumb {
+    background-color: var(--color-yellow);
+    border-radius: 5px;
 }
 
 .item {
+    width: 100%;
     padding: 30px 70px;
     border-top: 2px solid var(--color-light-2);
     cursor: pointer;
-    transition: background .2s linear, color .2s linear,;
+    transition: background .2s linear, color .2s linear;
+    position: relative;
 
     &:hover {
         background: var(--color-primary);
@@ -27,4 +51,8 @@
     &:first-child {
         border-top: none;
     }
+}
+
+.itemActive {
+    color: var(--color-yellow);
 }

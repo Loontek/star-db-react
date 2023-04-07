@@ -11,13 +11,12 @@
 }
 
 html {
-  height: 100vh;
+  min-height: 100vh;
   font-size: 10px;
 }
 
 body,
 #root {
-  // height: 100%;
-  height: max-content;
+  min-height: 100vh;
   @extend %font-sw;
 }
