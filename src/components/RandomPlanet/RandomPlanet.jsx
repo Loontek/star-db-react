@@ -1,76 +1,33 @@
-import { useContext, useEffect, useState } from "react";
-import styles from "./RandomPlanet.module.scss";
-import Loader from "../Loader/Loader";
-import RandomPlanetRender from "./RandomPlanetRender";
-import ErrorIndicator from "../ErrorIndicator/ErrorIndicator";
+import { getPlanet } from "../../api/services/Planet";
+import { getPlanetImage } from "../../api/services/PlanetImage";
+import useRandomData from "../../hooks/useRandomData";
+import RandomItem from "../shared/RandomItem/RandomItem";
+import Feature from "../shared/Feature/Feature";
 import errorIcon from "../../assets/img/error.svg";
-import { useData } from "../../hooks/useData";
-import { SwapiServiceContext } from "../../contexts";
-import { AnimatePresence } from "framer-motion";
+import styles from "./RandomPlanet.module.scss";
 
 const RandomPlanet = ({ isErrorThrown, isRestored }) => {
-	const { getPlanet } = useContext(SwapiServiceContext);
-	const { data, isLoading, isError, updateData } = useData(getPlanet);
-	const [planetsInterval, setPlanetsInterval] = useState(null);
-
-	useEffect(() => {
-		const id = isErrorThrown ? 12000 : Math.floor(Math.random() * 15) + 2;
-
-		updateData(id);
-
-		const interval = setInterval(() => {
-			const id = isErrorThrown
-				? 12000
-				: Math.floor(Math.random() * 15) + 2;
-			updateData(id);
-		}, 20000);
-
-		setPlanetsInterval(interval);
-
-		return () => clearInterval(interval);
-	}, []);
-
-	useEffect(() => {
-		if (!isErrorThrown) return;
-
-		clearInterval(planetsInterval);
-	}, [isErrorThrown]);
-
-	useEffect(() => {
-		if (!isRestored) return;
-
-		clearInterval(planetsInterval);
-
-		const interval = setInterval(() => {
-			const id = isErrorThrown
-				? 12000
-				: Math.floor(Math.random() * 15) + 2;
-			updateData(id);
-		}, 20000);
-
-		setPlanetsInterval(interval);
-	}, [isRestored]);
+	const { data, image, isLoading, isError } = useRandomData(
+		getPlanet,
+		getPlanetImage,
+		isErrorThrown,
+		isRestored
+	);
 
 	return (
-		<div className={styles.RandomPlanet}>
-			<AnimatePresence mode="wait">
-				{isError || isErrorThrown ? (
-					<ErrorIndicator
-						icon={errorIcon}
-						description={"Oops... Death Star destroyed your planet"}
-						key="error"
-					/>
-				) : isLoading ? (
-					<Loader isLoading={isLoading} key="loader" />
-				) : (
-					<RandomPlanetRender
-						planet={data}
-						isLoading={isLoading}
-						key="content"
-					/>
-				)}
-			</AnimatePresence>
-		</div>
+		<RandomItem
+			item={data}
+			image={image}
+			isLoading={isLoading}
+			isError={isError}
+			errorIcon={errorIcon}
+			description={"Oops... Death Star destroyed your planet"}
+			key="content"
+		>
+			<Feature field="population" label="Population" />
+			<Feature field="rotationPeriod" label="Rotation period" />
+			<Feature field="diameter" label="Diameter" />
+		</RandomItem>
 	);
 };
 

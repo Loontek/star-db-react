@@ -1,0 +1,23 @@
+@import '../../../styles/abstracts/_mixins';
+@import '../../../styles/abstracts/_placeholders';
+
+.ErrorButton {
+    @extend %font-sw;
+    @include font(1.6rem, 2.2rem);
+    width: max-content;
+    align-self: center;
+    border: none;
+    outline: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--color-light);
+    transition: background .2s linear, color .2s linear;
+    border: 1px solid var(--color-red);
+    cursor: pointer;
+    
+    &:hover {
+        color: var(--color-dark);
+        background: var(--color-red);
+    }
+}

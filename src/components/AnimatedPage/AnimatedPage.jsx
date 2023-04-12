@@ -18,7 +18,8 @@ const AnimatedPage = ({ children }) => {
 	};
 
 	return (
-		<motion.div
+		<motion.main
+			className={styles.AnimatedPage}
 			variants={animations}
 			initial="initial"
 			animate="animate"
@@ -29,7 +30,7 @@ const AnimatedPage = ({ children }) => {
 			}}
 		>
 			{children}
-		</motion.div>
+		</motion.main>
 	);
 };
 

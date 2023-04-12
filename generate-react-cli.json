@@ -15,6 +15,32 @@
       "withTest": false,
       "withStory": false,
       "withLazy": false
+    },
+    "page": {
+      "customTemplates": {
+        "component": "templates/page/TemplateName.jsx",
+        "style": "templates/page/TemplateName.module.scss",
+        "index": "templates/page/index.js"
+      },
+      "path": "src/pages",
+      "withStyle": true,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false,
+      "withIndex": true
+    },
+    "UI": {
+      "customTemplates": {
+        "component": "templates/UI/TemplateName.jsx",
+        "style": "templates/UI/TemplateName.module.scss",
+        "index": "templates/UI/index.js"
+      },
+      "path": "src/components/UI",
+      "withStyle": true,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false,
+      "withIndex": true
     }
   }
 }

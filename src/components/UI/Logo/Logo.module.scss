@@ -1,0 +1,29 @@
+@import '../../../styles/abstracts/_mixins';
+
+.Logo {
+    width: max-content;
+    max-width: 200px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-light-2);
+    transition: color .2s linear;
+
+    &:hover {
+        color: var(--color-light-3);
+    }
+}
+
+.img {
+    max-width: 50px;
+}
+
+.title {
+    @include font(3.2rem, 3.6rem);
+}
+
+.subtitle {
+    display: block;
+    @include font(1.6rem, 2rem);
+}

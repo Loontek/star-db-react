@@ -1,1 +1,10 @@
-.AnimatedPage {}
+.AnimatedPage {
+    width: 100%;
+    height: 100%;
+    padding: 10vh 5vw;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 50px;
+    overflow: hidden;
+}

@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "component": "npx generate-react-cli component"
+    "component": "npx generate-react-cli component",
+    "UI": "npx generate-react-cli component --type=UI",
+    "page": "npx generate-react-cli component --type=page"
   },
   "dependencies": {
     "framer-motion": "^10.11.2",

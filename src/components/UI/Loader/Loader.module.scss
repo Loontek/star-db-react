@@ -1,0 +1,42 @@
+.Loader {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    perspective: 100px;
+    
+    &::before {
+        content: '';
+        background: url('../../../assets/img/flame-danger-svgrepo-com.svg') no-repeat center / contain;
+        display: block;
+        width: 40px;
+        height: 40px;
+        transform: rotate(-90deg);
+        position: absolute;
+        top: calc(25% - 40px);
+        left: calc(25% - 30px);
+    }
+    
+    &::after {
+        content: '';
+        background: url('../../../assets/img/icons8-star-wars-millenium-falcon-48.png') no-repeat center / contain;
+        display: block;
+        width: 60px;
+        height: 60px;
+        transform: rotate(-90deg);
+        position: absolute;
+        top: calc(25% - 50px);
+        left: 25%;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

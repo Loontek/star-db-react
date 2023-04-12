@@ -1,0 +1,23 @@
+@import '../../styles/abstracts/_mixins';
+
+.Footer {
+    width: 100%;
+    padding: 25px 5vw;
+    background: var(--header-gradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    box-shadow: 0 -5px 10px #484e55;
+}
+
+.link {
+    @include font(2rem, 2.5rem);
+    text-decoration: none;
+    color: var(--color-light);
+    transition: color .2s ease-in-out;
+
+    &:hover {
+        color: var(--color-yellow);
+    }
+}

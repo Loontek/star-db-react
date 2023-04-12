@@ -1,0 +1,19 @@
+@import '../../../styles/abstracts/_mixins';
+
+.ErrorIndicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    z-index: 1;
+}
+
+.img {
+    max-width: 200px;
+}
+
+.description {
+    text-align: center;
+    @include font(2.8rem, 3.6rem);
+    color: var(--color-red);
+}
